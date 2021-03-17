@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hack or Snooze</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .fa-trash-alt,
+        .fa-star:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="bg-secondary">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container-fluid">
+            <a class="navbar-brand" id="logo" href="#">Hack or Snooze</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item user-field">
+                        <a class="nav-link" aria-current="page" href="#" id="submit-link">Submit</a>
+                    </li>
+                    <li class="nav-item user-field">
+                        <a class="nav-link user-field" href="#" id="favorites-link">Favorites</a>
+                    </li>
+                    <li class="nav-item user-field">
+                        <a class="nav-link" href="#" id="my-stories-link">My stories</a>
+                    </li>
+                </ul>
+                <a class="nav-link" href="#" id="login-signup-link">Login/Sign Up</a>
+            </div>
+        </div>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link user-field" aria-current="page" href="#" id="profile"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link user-field" href="#" id="logout">Logout</a>
+            </li>
+    </nav>
+
+    <div class="container-fluid hidden" id="login-signup-form">
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+                <h1>Login</h1>
+                <form id="login-form">
+                    <div class="mb-3">
+                        <label for="login-user" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="login-user">
+                    </div>
+                    <div class="mb-3">
+                        <label for="login-pass" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="login-pass">
+                    </div>
+                    <button class="btn btn-primary" id="login-btn">Login</button>
+                    <h1>Create account</h1>
+                    <div class="mb-3">
+                        <label for="create-name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="create-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="signup-user" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="create-user">
+                    </div>
+                    <div class="mb-3">
+                        <label for="create-pass" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="create-pass">
+                    </div>
+                    <button class="btn btn-success" id="signup-btn">Signup</button>
+                </form>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+    </div>
+    </div>
+
+    <div class="container-fluid hidden" id="submit">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <form id="submit-form">
+                    <div class="mb-3">
+                        <label for="submit-author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="submit-author" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="submit-author" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="submit-title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="submit-author" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="submit-url" required>
+                    </div>
+                    <button type="submit" class="btn btn-success" id="submit-button">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+    <div class="container hidden mt-3" id="profile-section">
+        <div class="row">
+            <div class="col-12 bg-light">
+                <h2>User profile info</h2>
+                <div id="p1"></div>
+                <div id="p2"></div>
+                <div id="p3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 mt-3">
+                <ol class="list-group bg-light" id="stories-list"></ol>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+    <script src="nav.js"></script>
+    <script src="user&stories.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
