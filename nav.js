@@ -44,12 +44,16 @@ submitLink.addEventListener('click', function () {
     storyList.classList.add('hidden');
 })
 
-
+let processing = false;
 submitButton.addEventListener('click', async function (e) {
     const storyTitle = document.querySelector('#submit-title');
     const storyAuthor = document.querySelector('#submit-author');
     const storyURL = document.querySelector('#submit-url');
     e.preventDefault();
+    if (processing === true) {
+        return;
+    }
+    processing = true;
     if (storyTitle.value !== '' &&
         storyAuthor.value !== '' &&
         storyURL.value !== '') {
@@ -62,6 +66,7 @@ submitButton.addEventListener('click', async function (e) {
             }
         };
         await addStory(storyObj);
+        processing = false;
     }
     submit.classList.add('hidden');
     storyList.classList.remove('hidden');

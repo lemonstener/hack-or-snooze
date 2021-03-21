@@ -82,6 +82,6 @@ async function removeFromFavorites(id) {
 
 // General function to fetch the data of the current user
 async function getUser() {
-    const res = await axios.get(`https://hack-or-snooze-v3.herokuapp.com/users/${user.username}?token=${user.token}`);
+    const res = await axios.get(`${BASE_URL}/users/${user.username}?token=${user.token}`);
     return (res.data.user);
 }

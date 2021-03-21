@@ -15,7 +15,7 @@ for (let item of userField) {
 async function getStories() {
     document.querySelector('#profile-section').classList.add('hidden');
     document.querySelector('#submit').classList.add('hidden');
-    const res = await axios.get("https://hack-or-snooze-v3.herokuapp.com/stories");
+    const res = await axios.get(`${BASE_URL}/stories`);
     let counter = 1;
     let favorites = [];
     if (checkForLoggedInUser()) {
@@ -30,7 +30,7 @@ async function getStories() {
         li.innerHTML =
             `<i class="far fa-star"></i>
             ${counter}.
-            <a href=${story.url}>${story.title}</a> <small>(${story.url})</small> by <b>${story.author}</b>
+            <a href=${story.url} target="_blank">${story.title}</a> <small>(${story.url})</small> by <b>${story.author}</b>
             <p>posted by <b>${story.username}</b></p>`;
         storyList.append(li);
         counter++;
@@ -42,13 +42,15 @@ async function getStories() {
             }
         }
     }
-    if (checkForLoggedInUser()) {
-        const stars = document.querySelectorAll('.fa-star');
-        for (let star of stars) {
-            star.addEventListener('click', async function () {
+    const stars = document.querySelectorAll('.fa-star');
+    for (let star of stars) {
+        star.addEventListener('click', async function () {
+            if (checkForLoggedInUser()) {
                 await addRemoveFavorite(star);
-            });
-        }
+            } else {
+                window.alert('Please login or register!')
+            }
+        });
     }
 }
 
